@@ -1,35 +1,47 @@
 import numpy as np
+import gymnasium as gym
 
-def show_animation(agent, env, steps=200, episodes=1):
-    ''' Pomocna funkce, ktera zobrazuje chovani zvoleneho agenta v danem 
-    prostredi.
+
+def simulate(agent, env_name, steps=1000, episodes=1, **env_args):
+    """ Pomocna funkce, ktera zobrazuje chovani zvoleneho agenta v danem 
+    prostredi a vrací průměr získaných returnů.
+    
     Parameters
     ----------
     agent: 
-        Agent, ktery se ma vizualizivat, musi implementovat metodu
-        act(observation, reward, done)
+        Agent, který se má vizualizovat, musí implementovat metodu
+        `agent.act(observation, reward, done)`
+        
     env:
-        OpenAI gym prostredi, ktere se ma pouzit
+        Gymnasium prostředí, které se má použít
     
     steps: int
-        Pocet kroku v prostredi, ktere se maji simulovat
+        Maximální počet kroků v prostředí na episodu, které se mají simulovat
     
     episodes: int
-        Pocet episod, ktere se maji simulovat - kazda a pocet kroku `steps`.
-    '''
-    for i in range(episodes):
-        obs = env.reset()
+        Počet episod, které se mají simulovat - každá s maximálním počtem kroků `steps`.
+        
+    is_jupyter: bool
+        Je funkce využívána v jupyter notebooku? Pokud je nastaveno na True,
+        vyžaduje následující nastavení prostředí (`env`): render_mode="rgb_array"
+    """
+    env = gym.make(env_name, render_mode="human", **env_args)
+        
+    for _ in range(episodes):
+        observation, _ = env.reset()
+        agent.reset() 
         done = False
-        R = 0
-        t = 0
-        r = 0
-        while not done and t < 200:
-            env.render()
-            action = agent.act(obs, r, done)
-            obs, r, done, _ = env.step(action)
-            R += r
-            t += 1
-        agent.reset()
+        reward, R, timestep = 0., 0., 0
+        
+        while not done and timestep < steps:
+            action = agent.act(observation, reward, done)
+            observation, reward, terminated, truncated, _ = env.step(action)
+            done = terminated or truncated
+            R += reward
+            timestep += 1
+            
+    env.close()
+            
 
 def moving_average(x, n):
     weights = np.ones(n)/n
