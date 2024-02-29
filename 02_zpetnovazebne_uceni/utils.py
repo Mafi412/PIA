@@ -26,6 +26,8 @@ def simulate(agent, env_name, steps=1000, episodes=1, **env_args):
         vyžaduje následující nastavení prostředí (`env`): render_mode="rgb_array"
     """
     env = gym.make(env_name, render_mode="human", **env_args)
+    
+    returns = []
         
     for _ in range(episodes):
         observation, _ = env.reset()
@@ -40,7 +42,11 @@ def simulate(agent, env_name, steps=1000, episodes=1, **env_args):
             R += reward
             timestep += 1
             
+        returns.append(R)
+            
     env.close()
+    
+    return returns
             
 
 def moving_average(x, n):
