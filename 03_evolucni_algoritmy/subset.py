@@ -4,11 +4,11 @@ import copy
 import matplotlib.pyplot as plt
 
 
-NUM_Of_ITEMS = 100
+NUM_OF_ITEMS = 100
 # random.seed(42)
 # np.random.seed(42)
 
-random_set = [random.randint(100, 150) for _ in range(NUM_Of_ITEMS)]
+random_set = [random.randint(100, 150) for _ in range(NUM_OF_ITEMS)]
 np_random_set = np.array(random_set)
 value = sum(random_set) // 2
 
@@ -18,7 +18,7 @@ print(value, random_set)
 # Population intialization
 # Coding used: Characteristic vectors of the subsets (https://en.wikipedia.org/wiki/Indicator_vector)
 def random_population(population_size):
-    return list(np.random.choice([0, 1], size=(population_size, NUM_Of_ITEMS), replace=True, p=[1/2, 1/2]))
+    return list(np.random.choice([0, 1], size=(population_size, NUM_OF_ITEMS), replace=True, p=[1/2, 1/2]))
 
 
 # I want to minimize this fitness, so the smaller the fitness, the better.
