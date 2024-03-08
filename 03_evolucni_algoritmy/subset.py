@@ -33,7 +33,7 @@ def selection(population, fitness_value, k=3):
     contestant_indices = np.random.choice(len(population), size=(len(population) - 1, k))
     fitness_value = np.array(fitness_value)
     
-    return [population[np.argmin(fitness_value[tournament_round])] for tournament_round in contestant_indices] + [population[np.argmin(fitness_value)]]
+    return [population[tournament_round[np.argmin(fitness_value[tournament_round])]] for tournament_round in contestant_indices] + [population[np.argmin(fitness_value)]]
 
 
 # One-point crossover with elitism (the last individual is the elite)
