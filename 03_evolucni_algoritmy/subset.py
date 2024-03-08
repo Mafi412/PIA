@@ -21,7 +21,7 @@ def random_population(population_size):
     return list(np.random.choice([0, 1], size=(population_size, NUM_Of_ITEMS), replace=True, p=[1/2, 1/2]))
 
 
-# I want to minimize thsi fitness, so the smaller the fitness, the better.
+# I want to minimize this fitness, so the smaller the fitness, the better.
 # Hence, the term "fitness" is no longer the greatest denotation for this value,
 # however it is customary to keep using the term.
 def fitness(individual):
