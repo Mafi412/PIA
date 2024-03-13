@@ -51,4 +51,4 @@ def simulate(agent, env_name, steps=1000, episodes=1, **env_args):
 
 def moving_average(x, n):
     weights = np.ones(n)/n
-    return np.convolve(np.asarray(x), weights, mode='valid')
+    return np.convolve(np.asarray(x), weights, mode="valid")
