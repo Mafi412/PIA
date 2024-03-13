@@ -6,7 +6,7 @@ def read_python_code_from_notebook(notebook_file_path, output_python_file_path):
     notebook = read(notebook_file_path, NO_CONVERT)
 
     cells = notebook.cells
-    code_cells = [c for c in cells if c.cell_type == 'code']
+    code_cells = [c for c in cells if c.cell_type == "code"]
 
     with open(output_python_file_path, "w") as output_file:
         for cell in code_cells:
