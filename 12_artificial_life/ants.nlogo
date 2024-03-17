@@ -18,7 +18,7 @@ to setup
  set color one-of [red blue green white yellow]
  set size 15
  set heading one-of [0 90 180 270]
- setxy random-pxcor random-pxcor
+ setxy random-pxcor random-pycor
  ]
 end
 
