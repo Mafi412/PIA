@@ -21,10 +21,6 @@ def simulate(agent, env_name, steps=1000, episodes=1, **env_args):
     
     episodes: int
         Number of episodes that are to be simulated - each with maximum number of timesteps `steps`.
-        
-    is_jupyter: bool
-        Is the function used in jupyter notebook? If set to True, it requires the following setting
-        of the environment (`env`): render_mode="rgb_array"
     """
     
     env = gym.make(env_name, render_mode="human", **env_args)
