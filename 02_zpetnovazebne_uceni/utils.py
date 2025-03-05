@@ -14,7 +14,7 @@ def simulate(agent, env_name, steps=1000, episodes=1, **env_args):
         `agent.act(observation, reward, done)`
         
     env:
-        Gymnasium environment that is to be used
+        Name of the gymnasium environment that is to be used
     
     steps: int
         Maximum number of timesteps per episode in the environment which are to be simulated
