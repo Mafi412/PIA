@@ -4,14 +4,13 @@ import gymnasium as gym
 
 def simulate(agent, env_name, steps=1000, episodes=1, **env_args):
     """
-    Renders the behavior of the given agent in the chosen environment and returns average
-    of the obtained returns.
+    Renders the behavior of the given agent in the chosen environment and returns the obtained returns.
     
     Parameters
     ----------
     agent:
         Agent which is to be visualized - must implement method
-        `agent.act(observation, reward, done)`
+        `agent.act(observation)`
         
     env:
         Name of the gymnasium environment that is to be used
@@ -28,14 +27,14 @@ def simulate(agent, env_name, steps=1000, episodes=1, **env_args):
     returns = []
         
     for _ in range(episodes):
-        observation, _ = env.reset()
-        agent.reset() 
+        state, _ = env.reset()
         done = False
-        reward, R, timestep = 0., 0., 0
+        R, timestep = 0., 0
         
         while not done and timestep < steps:
-            action = agent.act(observation, reward, done)
-            observation, reward, terminated, truncated, _ = env.step(action)
+            action = agent.act(state)
+            state, reward, terminated, truncated, _ = env.step(action)
+            
             done = terminated or truncated
             R += reward
             timestep += 1
