@@ -1,0 +1,5 @@
+numpy
+scikit-learn
+deap
+neat-python
+matplotlib
