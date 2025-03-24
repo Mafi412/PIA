@@ -1,3 +1,5 @@
 numpy
 deap
 matplotlib
+pandas
+scikit-learn
