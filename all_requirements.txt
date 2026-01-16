@@ -1,0 +1,16 @@
+jupyter
+numpy
+pandas
+matplotlib
+seaborn
+gymnasium
+pygame
+deap
+scikit-learn
+tqdm
+tensorflow
+cleverhans
+pillow
+neat-python
+cellpylib
+pyseagull
